@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background:#58a;
+        }
+    </style>
+</head>
+<body>
+    <div id="ad"></div>
+    <script>
+        // 需求1  点击 div 2s 后颜色变成 粉色
+        // 获取元素
+        let ad = document.getElementById('ad');
+        
+        // 绑定事件
+        // addEventListener()添加一个事件监听器，当用户单击按钮时将触发该事件监听器
+        // 第一个参数是事件的类型（例如“ click”或“ mousedown”或任何其他HTML DOM Event。）
+        // 第二个参数是事件发生时我们要调用的函数。
+        // 第三个参数是一个布尔值，指定是使用事件冒泡还是使用事件捕获。此参数是可选的。
+        ad.addEventListener("click", function(){  // 不能用箭头函数 this不会指向事件原 ad，
+                                                  // 而是指向外层作用域的this的值
+            // 保存this的值
+            // let _this = this;
+            // 定时器
+            // setTimeout(function(){ 不能直接使用this,要在外部声明一个_this
+            // 可以使用箭头声明，就不需要再外层再保存this的值了
+            setTimeout(() => {
+                // 原setTimeout(function(){ 的情况
+                // 修改背景颜色 this, 不能直接使用this，指向出错
+                // console.log(this) 指向window，没有style属性
+                // 可以在外层保存this的值 let _this = this;
+                // 因为把外层函数作用域下的this进行保存，当内部函数调用的时候无法找到this
+                // 就会去外部寻找this
+                // _this.style.background = "pink";
+            // 箭头函数本身就是静态的 this 本身就是指示声明所在作用域下的this值,在外层作用域下声明的
+            // 所以说this就指向外层函数this，就是指向事件原ad
+                this.style.background = "pink";
+            },2000);
+        });
+
+        // 需求2  从数组中返回偶数的元素
+        const arr = [1,6,9,10,100,25];
+        // const result = arr.filter(function(item){
+        //     if(item % 2 ===0){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // });
+        const result = arr.filter(item => {
+            if(item % 2 ===0){
+                return true;
+            }else{
+                return false;
+            }
+        });
+        // 简化
+        // const result = arr.filter(item => item % 2 ===0);
+        console.log(result);
+        
+        // 箭头函数适合与 this 无关的回调， 定时器, 数组的方法回调
+        // 箭头函数不适合与 this 有关的回调, 事件回调 , 对象的方法
+
+        {
+            name:"尚硅谷",
+            getName= () => {
+                this.name; // this就会指向外层作用域的对象
+            }
+        }
+    </script>
+</body>
+</html>

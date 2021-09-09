@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 声明变量
+        let a;
+        let b,c,d;
+        let e = 100;
+        let f = 521, g = "i love you", h = [];
+
+        //1. 变量不能重复声明
+        let star = "罗志祥";
+        // let star = "小猪";  会报错
+        // 如果是var就可以重复声明
+        
+        // 2. 块级作用域       全局，函数，eval
+        //    变量只在代码块中有效，出了代码块就会无效
+        //    if else while for这些循环语句的块级作用域
+        {
+            let girl = "周扬青";
+        }
+        console.log(girl);  // 会报错，因为是块级作用域,  
+                            // 如果是var，就可以正常输出，var没有块级作用域
+                            // 会添加到全局window的属性中
+        
+        // 3. 不存在变量提升
+        console.log(song);  //并不会报错，会输出一个undefined的变量
+        var song = "恋爱达人";
+        //如果是let song = "恋爱达人";  就会报错
+        
+        // 4. 不影响作用域链的效果
+        {
+            let school = "尚硅谷";
+            function fn(){
+                console.log(school);
+            }
+            fn(); //依旧可以输出，因为在函数fn()中找不到变量school会取上一级查找
+        } 
+
+
+
+    </script>
+</body>
+</html>
