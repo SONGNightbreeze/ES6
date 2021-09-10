@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Symbol 内置值
+        //      除了定义自己使用的Symbol值以外，ES6 还提供了11个内置的Symbol 值
+        //      指向语言内部使用的方法
+        // Symbol.hasInstance 当其他对象使用instanceof运算符,判断是否为该对象的实例时，会调用这个方法
+        class Person{
+            static [Symbol.hasInstance](param){  // 还会发送 instanceof 前面的值传递给param方法
+                console.log(param);  // 返回的是 instanceof前面的对象 o
+                console.log("我被用来检测类型了");
+                // 可以自己去控制类型检测
+                // return true; 就会返回true
+            }
+        }
+        let o ={};
+        console.log(o instanceof Person);  // false
+
+
+        ///////////////////////////////////////////////////////////////////////////
+        // 比如 foo instanceof Foo在语言内部，实际调用的是 Foo[Symbol.hasInstance](foo)
+        // 证明x确实是MyClass的实例
+        class MyClass {
+
+        }
+        var x = new MyClass();
+        console.log(x instanceof MyClass); // true
+        console.log(MyClass[Symbol.hasInstance](x)); // true
+        
+
+        class Even{
+            static [Symbol.hasInstance](obj){
+                return Number(obj) %2 === 0;
+            }
+        }
+        x = new Even();  // x作为Even的实例对象
+        console.log(1 instanceof Even); // false
+        console.log(2 instanceof Even); // true
+        console.log(x instanceof Even); // true  原本判断是否Even的实例的方法
+                                        //       被改return后成了传入的数字%2===0,所以是false
+        
+        
+        // MyClass是一个类，new MyClass()会返回一个实例
+        // 该实例的Symbol.hasInstance方法，会进行instanceof运算时自动调用
+        // 判断左侧的运算是否为Array的实例
+        // 这里相当于修改MyClass[Symbol.hasInstance]的动态方法
+        class MyClass{
+            [Symbol.hasInstance](foo){
+                return foo instanceof Array;  // foo 会返回 instanceof 前面的[1,2,3]作为值
+            }
+        }
+        var x = new MyClass();
+        console.log([1,2,3] instanceof new MyClass());  // true
+        console.log(x[Symbol.hasInstance]([0,0,0])); // true
+       
+       
+        // 一个完整的例子
+        class MyClass{
+            [Symbol.hasInstance](foo){
+                return foo instanceof Array;
+            }
+
+            static [Symbol.hasInstance](obj){
+                return Number(obj) %2 ===0;
+            }
+        }
+        var x = new MyClass();
+        console.log([1,2,3] instanceof new MyClass());  // true 我是调用的动态方法
+        console.log(x[Symbol.hasInstance]([0,0,0]));    // true 调用的动态方法
+        
+        console.log(2 instanceof MyClass);            // true 调用静态方法
+        console.log(MyClass[Symbol.hasInstance](2));  // true 调用了静态方法
+        
+        console.log(x instanceof MyClass);  // false 修改了静态方法
+                                            // x本身就是MyClass的实例，如果注释了静态方法就会返回true
+    </script>
+</body>
+</html>

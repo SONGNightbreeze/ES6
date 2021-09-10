@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Symbol 基本使用
+        //   ES6 引入了一种新的原型数据类型 Symbol, 表示独一无二的值
+        //   他是JavaScript语言的第七种数据类型，是一种类似于字符串的数据类型
+        //   特点
+        //      (1). Symbol的值是唯一的，用来解决命名冲突的问题
+        //      (2). Symbol 值不能与其他数据进行运算
+        //      (3). Symbol 定义的对象属性不能使用 for...in 循环遍历,
+        //                  但是可以使用 Reflect.ownKeys 来获取对象的所有键名
+
+        // 创建Symbol
+        // 1.
+        let s = Symbol();
+        console.log(s, typeof s);
+
+        let s2 = Symbol("尚硅谷"); // 只是一个标志，但返回的结果不一样
+        let s3 = Symbol("尚硅谷");
+        console.log(s2 === s3);  // false
+        
+        // 2.
+        // Symbol.for 创建
+        let s4 = Symbol.for("尚硅谷");
+        console.log(s4, typeof s4);
+        
+        // 不能与其他数据进行运算
+        // let result = s > 100; 会出错
+        // let result = s + 100;
+        // let result = s + s;
+
+        // USONB  7中数据类型
+        // U  undefined, S  String Symbol, O object, N null number, B boolean 
+    </script>
+</body>
+</html>

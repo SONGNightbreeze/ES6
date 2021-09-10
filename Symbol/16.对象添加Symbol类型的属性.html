@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Symbol 表示独一无二的值
+        //        给对象添加属性和方法
+        // 向对象中添加方法 up down 
+        let game = {
+
+        }
+        // game.up =function() 不能直接这样写，因为不知道game里面是否有up
+        // 还要查询对象里面的结构，如果结构复杂，命名会很麻烦
+        // 所以可以使用Symbol来声明
+
+        // 声明一个对象
+        let methods = {
+            up:Symbol(),
+            down:Symbol() 
+        };
+        game[methods.up] = function(){
+            console.log("我可以改变这个形状");
+        }
+        game[methods.down] = function(){
+            console.log("我可以快速下降");
+        }
+        console.log(game);
+        // 可以安全快速的将两个方法加入到对象里面，    
+        // 对象里面本身就又up down两个方法，又想加两个，可以用Symbol
+    
+    
+        let youxi = {
+            name:"狼人杀",
+            [Symbol("say")]: function(){
+                console.log("我可以发言");
+            },
+
+            [Symbol("zibao")]: function(){
+                console.log("我可以自爆");
+            }
+        }
+        console.log(youxi);
+    
+    </script>
+</body>
+</html>
