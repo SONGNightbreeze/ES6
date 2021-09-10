@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 生成器
+        // 生成器其实就是一个特殊的函数    异步变成    纯回调函数
+        // 生成器函数是ES6提供的一种异步变成解决方案，语法行为与传统函数完全不同
+
+        function * gen(){
+            console.log("hello generator");
+        }
+
+        let iterator = gen();
+        console.log(iterator);  // 返回的是迭代器对象，里面有next方法
+        // 借助next方法让对象运行
+        iterator.next();  
+
+        
+        // 生成器函数里面可以出现yield后面跟表达式或者自变量
+        // yield 可以作为函数代码的分隔符，可以吧函数代码切割成几块
+        // 下面函数分成了4份
+        function * gen(){
+            // console.log(111);
+            yield "一只没有耳朵";
+            // console.log(222);
+            yield "一只没有尾巴";
+            // console.log(333);
+            yield "真奇怪";
+            // console.log(444);
+        }
+        // 也是由next方法执行
+        let iterator1 = gen();
+        iterator1.next();  // 执行第一段
+        iterator1.next();
+        iterator1.next();
+        iterator1.next();
+
+        // 遍历   for...of
+        for(let v of gen()){
+            console.log(v);  // 每一次调用的返回结果是yield后面的自变量的值
+        }
+    </script>
+</body>
+</html>

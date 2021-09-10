@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function * gen(arg){
+            // yield 把代码分隔成几块
+            console.log(arg);
+
+            let one = yield 111;
+            console.log(one);  
+            
+            let two = yield 222;
+            console.log(two);  
+            
+            yield 333;
+            console.log(three); 
+        }
+        // 执行获取迭代器对象
+        // let iterator = gen();  没有参数的时候
+        // 没有参数的时候
+        // console.log(iterator.next());   // value:111  done:false
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        
+        let iterator = gen("AAA");
+        // 传入参数的时候
+        console.log(iterator.next());  // 输出AAA
+        // next的方法可以传入实参， 实参就是yield语句整个的返回结果
+        console.log(iterator.next("BBB"));  
+        // 第二个next的方法调用，传入的参数BBB将作为第一个yield语句整体返回结果
+
+        // 第三个使用next方法，里面的实参将作为第二个yield的整体返回结果
+        console.log(iterator.next("CCC")); 
+
+        // 第四次使用next方法
+        console.log(iterator.next("DDD"));
+    </script>
+</body>
+</html>
