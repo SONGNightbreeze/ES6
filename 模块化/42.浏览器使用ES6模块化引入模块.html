@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 加入 type = "module" 标签 -->
+    <script type="module">
+        // ES6 模块化语法
+        // 模块功能主要由两个命令构成: export 和 import
+        // export 命令用于规定模块的对外接口
+        //          在文件模块中哪些数据需要暴露，就在该数据前面加入export
+        // import 命令用于输入其他模块提供的功能
+
+        // 1. 通用的导入方式
+        // 引入 m1.js  模块内容
+        import * as m1 from "./m1/js";  // 就可以吧m1.js所有暴露数据都放到m1里面
+        console.log(m1);
+        // 引入另一个模块内容
+        import * as m2 from "./43.ES6模块暴露数据语法汇总/js";
+        // 引入default情况
+        import * as m3 from "./43.ES6模块暴露数据语法汇总2/js";
+        // default如果想要使用里面方法的话
+        m3.default.change();
+
+        console.log(m3);
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [1,2,3,4,5,4,3,2,1];
+        // 1. 数组去重                      let result = new Set(arr);    定义为一个集合去重
+        let result = [...new Set(arr)];  // result 已经是一个集合，但不是数组,然后再用扩展运算符
+        console.log(result);
+        // 2. 交集
+        let arr2 = [4,5,6,5,6];
+        // 先变成去重以后的数组，然后做比对,判断是否在arr2的里面
+        let result = [...new Set(arr)].filter(item =>{
+            let s2 = new Set(arr2);  // 去重后的arr2
+            // 如果s2中有item，返回true
+            if(s2.has(item)){
+                return true;
+            }else{
+                return false;
+            }
+        });
+        // 简化
+        let result = [...new Set(arr)].filter(item => new Set(arr2).has(item));
+        console.log(result);
+        // 3. 并集
+        // 先用数组[]将两个数组结合，然后去重set，再使用扩展运算符转换成数组[...]
+        let union = [...new Set([...arr, ...arr2])];
+        // 4. 差集   
+        // 做一个取反
+        let diff = [...new Set(arr)].filter(item => !(new Set(arr2).has(item)));
+        console.log(diff)
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 手机
+        function Phone(brand,price){
+            this.brand = brand;
+            this.price = price;
+        }
+        Phone.prototype.call = function(){
+            console.log("我可以打电话");
+        }
+
+        // 创建一个子集构造函数
+        // 智能手机
+        function SmartPhone(brand,price,color,size){
+            Phone.call(this, brand, price);  // 通过call方法改变this值，this指向SmartPhone里的this
+                                            // 也就是SmartPhone实例对象，然后初始化品牌和价格
+            this.color = color;
+            this.size = size;
+        }
+
+        // 设置子集构造函数的原型
+        SmartPhone.prototype = new Phone;  // 实例对象就会有父级的方法
+        SmartPhone.prototype.constructor = SmartPhone;  // 做一个校正
+
+        // 给子类的对象添加方法
+        // 声明子类的方法
+        SmartPhone.prototype.photo = function(){
+            console.log("我可以拍照");
+        }
+        SmartPhone.prototype.playGame = function(){
+            console.log("我可以玩游戏");
+        }
+
+        const chuizi = new SmartPhone("锤子", 2499, "黑色", "5inch");
+        console.log(chuizi);  // 分别输出brand:锤子 price:2499......
+                                // .proto 分别有photo和playGame方法 
+                                // .proto.proto 父类的方法 call
+    </script>
+</body>
+</html>

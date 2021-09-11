@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // get 和 set 
+        // 可以对对象的属性进行一个方法的绑定
+        // 添加一个get方法，当对某一个属性进行获取时，去执行get对应的函数
+        // 当对某一个属性进行设置时来去执行另外一个函数里面的代码
+        class Phone{
+            get price(){
+                console.log("价格属性被读取了");
+                return "sdfasfd";  // 读取price属性的时候，就会返回return后面的值
+            }
+            set price(newVal){  // 对price属性进行赋值的时候，就会调用set, "必须要有一个参数"
+                console.log("属性被修改了");
+            }
+        }
+        // 实例化对象
+        let s = new Phone();
+        console.log(s.price);  // 对price属性读取帮了一个函数，只要读取实例对象的price属性
+                                // 就会执行这个函数里面的代码，而且函数里面的返回值就是属性的值
+        // 给price属性进行一个赋值
+        s.price = "free";   // 输出  "属性被修改了"
+        
+        // 使用场景
+        // get通常对对象的动态属性进行封装，属性是变化的，值随着数据的变化而变化，通过get一个函数动态的计算
+        // set添加更多的控制和判断
+    
+    </script>
+</body>
+</html>

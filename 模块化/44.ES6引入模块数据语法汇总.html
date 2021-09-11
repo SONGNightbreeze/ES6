@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        // 2. 解构赋值形式
+        import {school, teach} from "./m1.js";
+        console.log(school);
+        console.log(teach);
+        // 出现同名的时候可以使用别名
+        import {school as guigu, findJob} from "./43.ES6模块暴露数据语法汇总/js";
+        console.log(guigu,findJob);
+        // 默认暴露的情况  
+        // defalut 引入的时候 必须在defalut的时候引入一个别名设置，不能直接使用
+        import {default as m3} from "./43.ES6模块暴露数据语法汇总2/js";
+        
+        // 3. 简便形式，针对默认暴露
+        import m3 from "./43.ES6模块暴露数据语法汇总2/js";
+        console.log(m3);
+    </script>
+</body>
+</html>

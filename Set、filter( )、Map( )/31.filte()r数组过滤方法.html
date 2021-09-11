@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // filter()数组过滤方法汇总
+        // 1.创建一个数组，判断数组中是否存在某个值
+        var newarr = [
+                { num: 1, val: 'ceshi', flag: 'aa' },
+                { num: 2, val: 'ceshi2', flag: 'aa2' }
+            ]
+        console.log(newarr.filter(item => item.num===2 ))  // newarr赋值给item
+        // 2.也可以通过上面方法过滤掉num为2的留下num为1的
+        console.log(newarr.filter(item => item.num!=2 ))
+        // 3.去掉空数组空字符串、undefined、null
+        var arr = ['1','2',undefined, '3.jpg',undefined]
+        var newArr = arr.filter(item => item)
+        console.log(newArr)
+ 
+        var arr = ['1','2',null, '3.jpg',null]
+        var newArr = arr.filter(item => item)
+        console.log(newArr)
+ 
+        //空字符串里面不能包含空格
+        var arr = ['1','2','', '3.jpg','']
+        var newArr = arr.filter(item => item)
+        console.log(newArr)
+        // 4.去掉数组中不符合项
+        var arr = [20,30,50, 96,50]
+        var newArr = arr.filter(item => item>40)  
+        console.log(newArr)
+        // 5.过滤不符合项
+        // indexOf()的意思：查找一个字符串中，第一次出现指定字符串的位置
+        var arr = ['10','12','23','44','42']
+        var newArr = arr.filter(item => item.indexOf('2')<0) 
+        console.log(newArr)
+        // 6. 数组去重
+        var arr = [1, 2, 2, 3, 4, 5, 5, 6, 7, 7,8,8,0,8,6,3,4,56,2];
+        var arr2 = arr.filter((x, index,self)=>self.indexOf(x)===index)  
+        console.log(arr2); //[1, 2, 3, 4, 5, 6, 7, 8, 0, 56]
+    </script>
+</body>
+</html>

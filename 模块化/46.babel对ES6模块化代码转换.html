@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 并不是每个浏览器都想chrome一样识别每个版本的代码
+        // babel是一个javascript的编译器，能够将ES新的特性的语法转换成ES5的语法
+        // 可以将代码做一个babel转换成ES5，之后再对代码形成打包，做一个单独的文件，再引入页面
+
+        // 1. 安装工具   babel-cli 是babel命令行的工具   
+        //              babel-preset-env 预设包将最近ECMA转换成ES5的语法
+        //              browserify  打包工具(之后会用webpack)
+        //  ctrl + shift + y 打开命令行 在终端中先初始化 npm init --yes
+        //  npm i babel-cli babel-preset-env browserify -D
+        // 2.  因为局部安装 npx，如果全局安装直接babel
+        //     npx babel scr/js -d dist/js --preset=babel-preset-env    scr文件夹下js的文件
+        //                         存到dist文件夹下      --... 表示参数
+        // 3. 打包  npx browserify dist/js/app.js -o dist/bundle.js
+        //                                         dis 目录下面就会出现一个文件bundel.js
+        // <script scr="dist/js/app.js">
+  </script>
+</body>
+</html>

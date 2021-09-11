@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ES5的例子
+        function Phone(){
+
+        }
+        // 函数对象的属性时属于函数对象的，并不属于实例对象，这样的属性为静态成员
+        Phone.name = "手机";
+        Phone.change = function(){
+            console.log("我可以改变世界");
+        }
+        Phone.prototype.size = "5.inche";
+        // 实例对象和构造函数原型对象是相通的
+        let nokia = new Phone();
+        console.log(nokia.name);  // undefined
+        nokia.change(); // not is function 实例对象和函数对象属性时不通的
+        
+        console.log(nokia.size);  // 5inch 相通的
+
+        // 在面向对象里，函数对象的属性这个属性属于类，不属于实例对象
+        class Phone{
+            // 静态属性
+            static name = "手机";
+            static change(){
+                console.log("我可以改变世界");
+            }
+        }
+        // 对于static标注的属性和方法属于类而不属于实例对象
+        // 实例化 
+        let nokia = new Phone();
+        console.log(nokia.name);  // undefined
+        console.log(Phone.name);  // 手机
+    </script>
+</body>
+</html>
